@@ -1,6 +1,7 @@
 #include "DrawMap.h"
 #include "GameMovement.h"
 #include "GhostsMoveInstructions.h"
+#include "GameMenu.h"
 
 void GameLogic()
 {
@@ -34,17 +35,35 @@ int main()
 	aMap.CureGetCoordinates();
 	while (!isGameOver)
 	{
-		GameLogic();
-		pacMan.GetKeyboardCommands();
-		pacMan.Movement(); 
-		ghosts.Movement(0);
-		ghosts.Movement(1);
-		ghosts.Movement(2);
-		ghosts.Movement(3);
-		ghosts.ChooseMove();
-		ghosts.Instructions();
-		pacMan.TouchGhost();
-		aMap.BuildMap();
+		if (choice == 0)
+		{
+			DrawMenu();
+			system("cls");
+		}
+		else if (choice == 1)
+		{
+			GameLogic();
+			pacMan.GetKeyboardCommands();
+			pacMan.Movement();
+			ghosts.Movement(0);
+			ghosts.Movement(1);
+			ghosts.Movement(2);
+			ghosts.Movement(3);
+			ghosts.ChooseMove();
+			ghosts.Instructions();
+			pacMan.TouchGhost();
+			aMap.BuildMap();
+		}
+		else if (choice == 2)
+		{
+			Rules();
+			system("cls");
+		}
+		else if (choice == 3)
+		{
+			Credits();
+			system("cls");
+		}
 		ClearScreen();
 		Sleep(100);
 	}
